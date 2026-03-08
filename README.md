@@ -16,11 +16,12 @@ npm start
 http://localhost:4000
 
 ### Predefined Users
-There are 4 predefined users in the API:
+There are 5 predefined users in the API:
 
-| username | password |
-| --- | --- |
-| user1 | 1234 |
-| user2 | 1234 |
-| user3 | 1234 |
-| user4 | 1234 |
+| username | password | role |
+| --- | --- | --- |
+| admin | 1234 | admin |
+| user1 | 1234 | default |
+| user2 | 1234 | default |
+| user3 | 1234 | default |
+| user4 | 1234 | default |

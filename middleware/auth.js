@@ -13,11 +13,20 @@ function isAuthorized(req, res, next) {
 	next();
 }
 
+function isAdmin(req, res, next) {
+	let token = req.headers.authorization.split(" ")[1];
+	let decodedToken = verify(token, process.env.JWT_SECRET);
+
+	if (decodedToken.data.role !== "admin") return res.status(401).end();
+
+	next();
+}
+
 function isRelevantUser(req, res, next) {
 	let reqId = req.params.id;
 	let token = req.headers.authorization.split(" ")[1];
 	let decodedToken = verify(token, process.env.JWT_SECRET);
-	
+
 	if (decodedToken.data.id !== parseInt(reqId)) return res.status(403).end();
 
 	if (decodedToken.data.exp < Date.now()) return res.status(403).end();
@@ -27,5 +36,6 @@ function isRelevantUser(req, res, next) {
 
 module.exports = {
 	isAuthorized,
+	isAdmin,
 	isRelevantUser
 };
